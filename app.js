@@ -3,25 +3,31 @@ var express = require('express')
   , http    = require('http')
   , path    = require('path')
   , app     = express()
+  , locals  = require('./locals')
   , less    = require('less-middleware');
   
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('less source', path.join(__dirname, 'assets', 'less'));
+  app.set('less include paths', [path.join(__dirname, 'node_modules', 'bootstrap', 'less')]);
+  app.set('less destination', path.join(__dirname, 'public', 'stylesheets'));
+  app.set('less prefix', '/stylesheets');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(locals);
   app.use(app.router);
 });
 
 app.configure('development', function(){
   app.use(less({
-    src    : path.join(__dirname, 'assets', 'less'),
-    paths  : path.join(__dirname, 'node_modules', 'bootstrap', 'less'),
-    dest   : path.join(__dirname, 'public', 'stylesheets'),
-    prefix : '/stylesheets',
+    src    : app.get('less source'),
+    paths  : app.get('less include paths'),
+    dest   : app.get('less destination'),
+    prefix : app.get('less prefix'),
     debug  : true
   }));
   app.use(express['static'](path.join(__dirname, 'public')));
@@ -30,13 +36,8 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(less({
-    src      : path.join(__dirname, 'assets', 'less'),
-    paths    : path.join(__dirname, 'node_modules', 'bootstrap', 'less'),
-    dest     : path.join(__dirname, 'public', 'stylesheets'),
-    prefix   : '/stylesheets',
-    compress : true
-  }));
+  var less = require('./less');
+  less.compile();
   app.use(express['static'](path.join(__dirname, 'public')));
 });
 

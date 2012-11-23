@@ -1,4 +1,13 @@
+mixin navItem(href, text)
+  if isRoute(href)
+    className = 'active'
+  else
+    className = []
+  li(class=className)
+    a(href=href)= text
+
 doctype 5
+
 html
   head
     title
@@ -8,6 +17,7 @@ html
       link(rel='stylesheet', href='/stylesheets/base.css')
     script
       document.getElementsByTagName('html')[0].className += 'js-enabled js-loading';
+
   body
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
@@ -21,12 +31,9 @@ html
                 | w
                 span.jw-logo-tag-delim &gt;
             ul.nav.pull-right
-              li
-                a(href='/portfolio') Portfolio
-              li
-                a(href='/prices') Prices
-              li
-                a(href='mailto:johngeorge.wright@gmail.com') Contact
+              mixin navItem('/portfolio', 'Portfolio')
+              mixin navItem('/prices', 'Prices')
+              mixin navItem('mailto:johngeorge.wright@gmail.com', 'Contact')
 
     .container.body
       block content
