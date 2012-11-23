@@ -2,9 +2,10 @@ var less   = require('less'),
     path   = require('path'),
     rdf    = require('read-dir-files'),
     fs     = require('fs'),
-    source = path.join(__dirname, 'assets', 'less'),
-    dest   = path.join(__dirname, 'public', 'stylesheets'),
-    incs   = [path.join(__dirname, 'node_modules', 'bootstrap', 'less')];
+    app    = require('./app'),
+    source = app.get('less source'),
+    dest   = app.get('less destination'),
+    incs   = app.get('less include paths');
 
 exports.compile = function(){
 
