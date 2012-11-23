@@ -1,0 +1,46 @@
+extends layout
+
+prepend title
+  | Portfolio |&nbsp;
+
+append stylesheets
+  link(rel='stylesheet', href='/stylesheets/portfolio.css')
+
+mixin item(name, what, tech, url, image, className)
+  div(class=['span4', 'jw-portfolio-#{className}'])
+    section
+      .well
+        h1= name
+        .jw-portfolio-logo
+          img(src='/images/portfolio/#{image}', alt='#{name} logo')
+        dl
+          dt What is it?
+          dd= what
+          dt Technologies
+          dd Developed using #{tech}
+          dt URL
+          dd
+            a(href=url)= url
+
+block content
+  article
+    h1 Portfolio
+
+    p Here's a small selection og projects I have worked on during my career.
+
+    .row
+      mixin item('Amaysim')
+      mixin item('TrustedReviews', 'A site devoted to reviewing technology', 'Symfony (PHP), MySQL, Apache, YUI, Pluck', 'http://www.trustedreviews.com', 'tr.png', 'tr')
+      mixin item('Khadi Papers', 'Handmade paper for artists.', 'Actinic (PHP e-commerce), Apache', 'http://www.khadipapers.com', 'khadi.jpg')
+    .row
+      mixin item('Zimmer Stewart Gallery', 'A contemporary art gallery in Arundel.', 'PHP, Smarty, MySQL, Apache.', 'http://www.zimmerstewart.co.uk', 'zs.gif')
+      mixin item('Partimi', 'An independant fashion label based in London.', 'PHP, MySQL, Apache, jQuery', 'http://www.partimi.com', 'partimi.png')
+      mixin item('Graeme Hunt', 'A business selling classic cars.', 'PHP, SQLite, Apache, YUI.', 'http://www.graemehunt.com', 'gh.png')
+    .row
+      mixin item('I.S. Polson', 'A business restoring and selling Roesch designed Talbots.', 'PHP, SQLite, Apache, YUI.', 'http://www.ispolson.com', 'ispolson.png')
+      mixin item('The Air Gallery', 'An art gallery in Mayfair', 'PHP, SQLite, Apache, YUI.', 'http://www.airgallery.co.uk', 'ag.png')
+      mixin item('Tangmere Military Aviation Museum', 'An historic aircraft museum', 'PHP, Smarty, MySQL, Apache', 'http://www.tangmere-museum.org.uk', 'tangmere.jpg')
+    .row
+      mixin item('Rancho del Ingles', 'A hotel in rural Spain', 'PHP, Apache', 'http://www.ranchodelingles.com', 'rdi.jpg')
+      mixin item('Tipping Point', 'TippingPoint is a network-based organisation aiming to be a year round \'connection\' of the arts and climate science worlds.', 'PHP, WordPress, MySQL, jQuery', 'http://www.tippingpoint.org.uk', 'tippingpoint.jpg')
+

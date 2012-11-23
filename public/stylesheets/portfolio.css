@@ -1,0 +1,13 @@
+section .well {
+  padding-top: 0.5em;
+}
+section .well h1 {
+  font-size: 100%;
+  line-height: 20px;
+}
+section .well .jw-portfolio-logo {
+  text-align: center;
+}
+section .jw-portfolio-tr .jw-portfolio-logo {
+  background-color: #FC6A02;
+}
