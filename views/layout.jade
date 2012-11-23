@@ -1,0 +1,27 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/base.css')
+  body
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container
+          nav
+            a.brand(href='/')
+              abbr(title='John Wright')
+                span.jw-logo-tag-delim &lt;
+                | j
+                span.jw-logo-tag-delim &gt;&lt;/
+                | w
+                span.jw-logo-tag-delim &gt;
+            ul.nav.pull-right
+              li
+                a(href='/portfolio') Portfolio
+              li
+                a(href='/prices') Prices
+              li
+                a(href='mailto:johngeorge.wright@gmail.com') Contact
+
+    .container.body
+      block content
