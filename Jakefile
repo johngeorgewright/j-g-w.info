@@ -1,14 +1,13 @@
-var less = require('less'),
-    path = require('path'),
-    rdf  = require('read-dir-files'),
-    fs   = require('fs');
-
 namespace('compile', function(){
 
   desc('Compiles all less files.');
   task('less', [], function(params){
 
-    var source = path.join(__dirname, 'assets', 'less'),
+    var less   = require('less'),
+        path   = require('path'),
+        rdf    = require('read-dir-files'),
+        fs     = require('fs'),
+        source = path.join(__dirname, 'assets', 'less'),
         dest   = path.join(__dirname, 'public', 'stylesheets'),
         incs   = [path.join(__dirname, 'node_modules', 'bootstrap', 'less')];
 
@@ -21,7 +20,7 @@ namespace('compile', function(){
       var file, parser, filename;
       
       if(err){
-        throw new Error(err);
+        return console.error(err);
       }
 
       for(file in files){
@@ -47,7 +46,7 @@ namespace('compile', function(){
 
             fs.writeFile(path.join(dest, destFile), css, function(err){
               if(err){
-                return console.error(err);
+                console.error(err);
               }
             });
           });

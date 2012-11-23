@@ -30,6 +30,13 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
+  app.use(less({
+    src      : path.join(__dirname, 'assets', 'less'),
+    paths    : path.join(__dirname, 'node_modules', 'bootstrap', 'less'),
+    dest     : path.join(__dirname, 'public', 'stylesheets'),
+    prefix   : '/stylesheets',
+    compress : true
+  }));
   app.use(express['static'](path.join(__dirname, 'public')));
 });
 
