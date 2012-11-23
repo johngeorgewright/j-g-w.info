@@ -14,6 +14,9 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
+});
+
+app.configure('development', function(){
   app.use(less({
     src    : path.join(__dirname, 'assets', 'less'),
     paths  : path.join(__dirname, 'node_modules', 'bootstrap', 'less'),
@@ -22,14 +25,17 @@ app.configure(function(){
     debug  : true
   }));
   app.use(express['static'](path.join(__dirname, 'public')));
+  app.use(express.errorHandler());
+  app.get('/javascripts/bootstrap-min.js', routes.bootstrapJs);
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
+app.configure('production', function(){
+  app.use(express['static'](path.join(__dirname, 'public')));
 });
 
 app.get('/', routes.index);
 app.get('/portfolio', routes.portfolio);
+app.get('/prices', routes.prices);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

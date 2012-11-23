@@ -9,7 +9,8 @@
     "express": "3.0.0rc5",
     "jade": "*",
     "less-middleware": "git+https://github.com/johngeorgewright/less.js-middleware.git#configurable-paths",
-    "bootstrap": "git+https://github.com/twitter/bootstrap.git#v2.2.1"
+    "bootstrap": "git+https://github.com/twitter/bootstrap.git#v2.2.1",
+    "less": "*"
   },
   "engines": {
     "node": "0.8.x",
