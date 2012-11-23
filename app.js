@@ -36,9 +36,14 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  var less = require('./less');
-  less.compile();
   app.use(express['static'](path.join(__dirname, 'public')));
+  app.use(less({
+    src      : app.get('less source'),
+    paths    : app.get('less include paths'),
+    dest     : app.get('less destination'),
+    prefix   : app.get('less prefix'),
+    compress : true
+  }));
 });
 
 app.get('/', routes.index);
