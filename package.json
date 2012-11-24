@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "jake server"
+    "start": "jake server",
+    "postinstall": "jake compile:less"
   },
   "dependencies": {
     "express": "3.0.0rc5",
