@@ -16,9 +16,12 @@ html
     block stylesheets
       link(rel='stylesheet', href='/stylesheets/base.css')
     script
-      document.getElementsByTagName('html')[0].className += 'js-enabled js-loading';
+      document.getElementsByTagName('html')[0].className+='js-enabled js-loading'
 
   body
+    .container.body
+      block content
+
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
@@ -35,16 +38,9 @@ html
               mixin navItem('/prices', 'Prices')
               mixin navItem('mailto:johngeorge.wright@gmail.com', 'Contact')
 
-    .container.body
-      block content
-
     block scripts
       script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
 
     script
-      jQuery(function(){
-        jQuery('html')
-          .addClass('js-loaded')
-          .removeClass('js-loading');
-      });
+      jQuery(function(){jQuery('html').addClass('js-loaded').removeClass('js-loading')})
 
