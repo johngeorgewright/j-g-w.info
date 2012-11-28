@@ -4,7 +4,8 @@ var express = require('express')
   , path    = require('path')
   , app     = express()
   , locals  = require('./locals')
-  , less    = require('less-middleware');
+  , less    = require('less-middleware')
+  , helpers = require('./helpers');
   
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -18,6 +19,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.locals.allowRobots = helpers.allowRobots();
   app.use(locals);
   app.use(app.router);
 });
@@ -47,6 +49,7 @@ app.configure('production', function(){
 });
 
 app.get('/', routes.index);
+app.get('/robots.txt', routes.robots);
 app.get('/portfolio', routes.portfolio);
 app.get('/prices', routes.prices);
 

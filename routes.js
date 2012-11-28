@@ -1,5 +1,6 @@
 var path         = require('path'),
-    readDirFiles = require('read-dir-files');
+    readDirFiles = require('read-dir-files'),
+    helpers      = require('./helpers');
 
 /*
  * GET home page.
@@ -20,6 +21,20 @@ exports.portfolio = function(req, res){
  */
 exports.prices = function(req, res){
   res.render('prices');
+};
+
+/**
+ * GET robots.txt
+ */
+exports.robots = function(req, res){
+  var resTxt = 'User-agent: *';
+
+  if(!helpers.allowRobots()){
+    resTxt += "\nDisallow: /";
+  }
+  
+  res.type('text');
+  res.send(resTxt);
 };
 
 /**
