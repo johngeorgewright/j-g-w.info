@@ -1,11 +1,13 @@
-var express = require('express')
-  , routes  = require('./routes')
-  , http    = require('http')
-  , path    = require('path')
-  , app     = express()
-  , locals  = require('./locals')
-  , less    = require('less-middleware')
-  , helpers = require('./helpers');
+var express  = require('express')
+  , routes   = require('./routes')
+  , http     = require('http')
+  , path     = require('path')
+  , app      = express()
+  , locals   = require('./locals')
+  , less     = require('less-middleware')
+  , helpers  = require('./helpers')
+  , username = process.env.AUTH_USER
+  , password = process.env.AUTH_PASS;
   
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -15,6 +17,9 @@ app.configure(function(){
   app.set('less include paths', [path.join(__dirname, 'node_modules', 'bootstrap', 'less')]);
   app.set('less destination', path.join(__dirname, 'public', 'stylesheets'));
   app.set('less prefix', '/stylesheets');
+  if(username && password){
+    app.use(express.basicAuth(username, password));
+  }
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
