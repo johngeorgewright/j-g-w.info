@@ -47,7 +47,7 @@ exports.bootstrapJs = function(req, res){
     }
 
     for(filename in files){
-      if(files.hasOwnProperty(filename)){
+      if(files.hasOwnProperty(filename) && filename[0] !== '.'){
         data += files[filename].toString();
       }
     }

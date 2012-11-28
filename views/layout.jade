@@ -12,6 +12,7 @@ html
   head
     meta(encoding='utf8')
     meta(name='robots', content=allowRobots ? 'index, follow' : 'noindex, nofollow')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title
       block title
         | John Wright | Web Developer | SEO Webmaster | UX Designer
@@ -21,12 +22,18 @@ html
       document.getElementsByTagName('html')[0].className+='js-enabled js-loading'
 
   body
-    .container.body
-      block content
+    ul.ah
+      li
+        a(href="#body") Skip to content
 
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
+          .btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+
           nav
             a.brand(href='/')
               abbr(title='John Wright')
@@ -35,13 +42,18 @@ html
                 span.jw-logo-tag-delim &gt;&lt;/
                 | w
                 span.jw-logo-tag-delim &gt;
-            ul.nav.pull-right
-              mixin navItem('/portfolio', 'Portfolio')
-              mixin navItem('/prices', 'Prices')
-              mixin navItem('mailto:johngeorge.wright@gmail.com', 'Contact')
+            .nav-collapse.collapse
+              ul.nav.pull-right
+                mixin navItem('/portfolio', 'Portfolio')
+                mixin navItem('/prices', 'Prices')
+                mixin navItem('mailto:johngeorge.wright@gmail.com', 'Contact')
+
+    #body.container
+      block content
 
     block scripts
       script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+      script(src='/javascripts/bootstrap-min.js')
 
     script
       jQuery(function(){jQuery('html').addClass('js-loaded').removeClass('js-loading')})

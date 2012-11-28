@@ -10,11 +10,12 @@ var express  = require('express')
   , password = process.env.AUTH_PASS;
   
 app.configure(function(){
+  var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set('less source', path.join(__dirname, 'assets', 'less'));
-  app.set('less include paths', [path.join(__dirname, 'node_modules', 'bootstrap', 'less')]);
+  app.set('less include paths', [path.join(bootstrapPath, 'less')]);
   app.set('less destination', path.join(__dirname, 'public', 'stylesheets'));
   app.set('less prefix', '/stylesheets');
   if(username && password){
@@ -24,6 +25,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use('/img', express['static'](path.join(bootstrapPath, 'img')));
   app.locals.allowRobots = helpers.allowRobots();
   app.use(locals);
   app.use(app.router);

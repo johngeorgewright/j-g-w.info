@@ -5,9 +5,11 @@ var less   = require('less'),
     app    = require('./app'),
     source = app.get('less source'),
     dest   = app.get('less destination'),
-    incs   = app.get('less include paths');
+    incs   = app.get('less include paths'),
+    assert = require('assert'),
+    Uglify = require('uglify-js');
 
-exports.compile = function(){
+exports.less = function(){
 
   rdf.read(source, function(err, files){
 
@@ -52,5 +54,25 @@ exports.compile = function(){
 
   });
 
+};
+
+exports.js = function(){
+  var dir     = path.join(__dirname, 'node_modules', 'bootstrap', 'js'),
+      outname = path.join(__dirname, 'public', 'javascripts', 'bootstrap-min.js'),
+      files   = ['transition', 'collapse', 'button'],
+      output  = '';
+
+  files = files.map(function(file){
+    file = 'bootstrap-' + file + '.js';
+    file = path.join(dir, file);
+    return file;
+  });
+
+  output = Uglify.minify(files).code;
+
+  fs.writeFile(outname, output, function(err){
+    assert.ifError(err);
+    console.log('Compiled JS');
+  });
 };
 

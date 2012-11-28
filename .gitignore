@@ -1,5 +1,4 @@
 node_modules
 *.swp
-public/stylesheets/*
 npm-debug.log
 .env
