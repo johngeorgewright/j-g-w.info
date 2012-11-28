@@ -27,14 +27,8 @@ exports.prices = function(req, res){
  * GET robots.txt
  */
 exports.robots = function(req, res){
-  var resTxt = 'User-agent: *';
-
-  if(!helpers.allowRobots()){
-    resTxt += "\nDisallow: /";
-  }
-  
   res.type('text');
-  res.send(resTxt);
+  res.render('robots');
 };
 
 /**
