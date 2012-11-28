@@ -38,7 +38,6 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(express['static'](path.join(__dirname, 'public')));
   app.use(less({
     src      : app.get('less source'),
     paths    : app.get('less include paths'),
@@ -46,6 +45,7 @@ app.configure('production', function(){
     prefix   : app.get('less prefix'),
     compress : true
   }));
+  app.use(express['static'](path.join(__dirname, 'public')));
 });
 
 app.get('/', routes.index);
