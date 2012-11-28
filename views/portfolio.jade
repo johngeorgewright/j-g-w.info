@@ -12,14 +12,15 @@ mixin item(name, what, tech, url, image, className)
           a(href=url)
             img(src='/images/portfolio/#{image}', alt='#{name} logo')
         .jw-portfolio-description.collapse
-          dl.row-fluid
-            dt.span4 What is it?
-            dd.span8= what
-            dt.span4 Technologies
-            dd.span8 Developed using #{tech}
-            dt.span4 URL
-            dd.span8
-              a(href=url)= url
+          .jw-portfolio-description-inner
+            dl.row-fluid
+              dt.span4 What is it?
+              dd.span8= what
+              dt.span4 Technologies
+              dd.span8 Developed using #{tech}
+              dt.span4 URL
+              dd.span8
+                a(href=url)= url
         a.jw-portfolio-toggle.hidden-desktop
           span.icon-align-justify
 
@@ -27,7 +28,7 @@ block content
   article
     h1 Portfolio
 
-    p Here's a small selection og projects I have worked on during my career.
+    p Here's a small selection of projects I have worked on during my career.
 
     .row
       mixin item('Amaysim', 'SIM only, low cost mobile provider', 'Ruby on Rails, Apache, jQuery, Magnolia (Java)', 'http://www.amaysim.com.au', 'amaysim.png', 'amaysim')
@@ -67,11 +68,17 @@ append scripts
 
         $this.hover(
           function(){
-            desc.collapse('show');
+            if(!desc.is('.in')){
+              desc
+                .stop(true, true)
+                .collapse('show');
+            }
           },
           function(){
-            if(!btn.is('.active')){
-              desc.collapse('hide');
+            if(!btn.is('.active') && desc.is('.in')){
+              desc
+                .stop(true, true)
+                .collapse('hide');
             }
           }
         );
