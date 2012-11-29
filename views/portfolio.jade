@@ -11,7 +11,7 @@ mixin item(name, what, tech, url, image, className)
         .jw-portfolio-logo
           a(href=url)
             img(src='/images/portfolio/#{image}', alt='#{name} logo')
-        .jw-portfolio-description.collapse
+        .jw-portfolio-description.collapse(id='#jw-portfolio-#{className}-description')
           .jw-portfolio-description-inner
             dl.row-fluid
               dt.span4 What is it?
@@ -21,7 +21,7 @@ mixin item(name, what, tech, url, image, className)
               dt.span4 URL
               dd.span8
                 a(href=url)= url
-        a.jw-portfolio-toggle.hidden-desktop
+        a.jw-portfolio-toggle.hidden-desktop(href='#jw-portfolio-#{className}-description')
           span.icon-align-justify
 
 block content
