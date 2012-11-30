@@ -59,7 +59,7 @@ exports.less = function(){
 exports.js = function(){
   var dir     = path.join(__dirname, 'node_modules', 'bootstrap', 'js'),
       outname = path.join(__dirname, 'public', 'javascripts', 'bootstrap-min.js'),
-      files   = ['button'],
+      files   = ['transition', 'collapse', 'button'],
       output  = '';
 
   files = files.map(function(file){
