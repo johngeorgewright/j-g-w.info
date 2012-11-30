@@ -11,7 +11,7 @@ mixin item(name, what, tech, url, image, className)
         .jw-portfolio-logo
           a(href=url)
             img(src='/images/portfolio/#{image}', alt='#{name} logo')
-        .jw-portfolio-description.collapse(id='#jw-portfolio-#{className}-description')
+        .jw-portfolio-description(id='#jw-portfolio-#{className}-description')
           .jw-portfolio-description-inner
             dl.row-fluid
               dt.span4 What is it?
@@ -49,36 +49,49 @@ block content
 append scripts
   script
     (function($){
-
       $('.jw-portfolio-item').each(function(){
         var $this  = $(this),
             desc   = $this.find('.jw-portfolio-description'),
-            btn    = $this.find('.jw-portfolio-toggle');
+            btn    = $this.find('.jw-portfolio-toggle'),
+            height = desc.css('height');
+
+        desc.css('height', 0);
+
+        function hide(){
+          desc
+            .stop(true, true)
+            .animate({ height: 0 }, function(){
+              desc.removeClass('in');
+            })
+        }
+
+        function show(){
+          desc.
+            stop(true, true)
+            .animate({ height: height }, function(){
+              desc.addClass('in');
+            });
+        }
 
         btn.click(function(){
-          var $this = $(this);
-          $this.button('toggle');
-          if($this.is('.active')){
-            desc.collapse('show');
+          btn.button('toggle');
+          if(btn.is('.active')){
+            show()
           }
           else{
-            desc.collapse('hide');
+            hide();
           }
         });
 
         $this.hover(
           function(){
             if(!desc.is('.in')){
-              desc
-                .stop(true, true)
-                .collapse('show');
+              show();
             }
           },
           function(){
             if(!btn.is('.active')){
-              desc
-                .stop(true, true)
-                .collapse('hide');
+              hide();
             }
           }
         );
