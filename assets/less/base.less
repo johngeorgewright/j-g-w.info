@@ -33,6 +33,15 @@ body {
   }
 }
 
+h2 { border-bottom: 1px solid #CCCCCC; }
+
+section h1 { font-size: @baseFontSize * 2.25; border-bottom: 1px solid #CCCCCC; } // ~32px
+section h2 { font-size: @baseFontSize * 1.75; } // ~24px
+section h3 { font-size: @baseFontSize * 1.25; } // ~18px
+section h4 { font-size: @baseFontSize; }
+section h5 { font-size: @baseFontSize * 0.85; } // ~12px
+section h6 { font-size: @baseFontSize * 0.55; }
+
 .jw-portfolio-item {
   .well {
     padding-top: 0.5em;
@@ -42,6 +51,7 @@ body {
     h1 {
       font-size: 100%;
       line-height: 20px;
+      border-bottom: none;
     }
 
     .jw-portfolio-logo {
@@ -123,16 +133,151 @@ body {
 
 .jw-portfolio-toggle {
   .btn;
-  .pull-right;
 
   position: absolute;
   top: 0.5em;
   right: 0.5em;
 }
 
+// Accessibility
+@off-screen: -99999px;
+
 .ah {
   position: absolute;
-  top: -99999px;
-  left: -99999px;
+  top: @off-screen;
+  left: @off-screen;
+}
+
+.phark() {
+  display: block;
+  text-indent: @off-screen;
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+
+.tech-logo() {
+  .phark;
+  height: 60px;
+  background-image: url(/images/logos.png);
+}
+
+.php-logo {
+  .tech-logo;
+  width: 122px;
+  background-position: left top;
+}
+
+.node-logo {
+  .tech-logo;
+  width: 213px;
+  background-position: -122px top;
+}
+
+.sf-logo {
+  .tech-logo;
+  width: 240px;
+  background-position: -599px top;
+}
+
+.jquery-logo {
+  .tech-logo;
+  width: 264px;
+  background-position: -335px top;
+}
+
+.yui-logo {
+  .tech-logo;
+  width: 135px;
+  background-position: -839px top;
+}
+
+.css3-logo {
+  .tech-logo;
+  width: 194px;
+  background-position: -974px;
+}
+
+.html5-logo {
+  .tech-logo;
+  width: 44px;
+  background-position: -1168px;
+}
+
+.moo-logo {
+  .tech-logo;
+  width: 240px;
+  background-position: -1212px;
+}
+
+.magnolia-logo {
+  .tech-logo;
+  width: 220px;
+  background-position: -1559px top;
+}
+
+.ruby-logo {
+  .tech-logo;
+  width: 60px;
+  background-position: -1452px top;
+}
+
+.rails-logo {
+  .tech-logo;
+  width: 47px;
+  background-position: -1512px top;
+}
+
+.gimp-logo {
+  .tech-logo;
+  width: 73px;
+  background-position: -1779px top;
+}
+
+.less-logo {
+  .tech-logo;
+  width: 147px;
+  background-position: -1852px top;
+}
+
+.stylus-logo {
+  .tech-logo;
+  width: 63px;
+  background-position: -1999px top;
+}
+
+.smarty-logo {
+  .tech-logo;
+  width: 202px;
+  background-position: -2062px top;
+}
+
+.git-logo {
+  .tech-logo;
+  width: 60px;
+  background-position: -2264px top;
+}
+
+.svn-logo {
+  .tech-logo;
+  width: 69px;
+  background-position: -2324px top;
+}
+
+.ubuntu-logo {
+  .tech-logo;
+  width: 230px;
+  background-position: -2393px top;
+}
+
+ul.logos {
+  list-style: none;
+  margin: 0 0 4em;
+
+  li {
+    display: inline-block;
+    .ie7-inline-block;
+    margin-bottom: 1em;
+    margin-right: 4em;
+  }
 }
 

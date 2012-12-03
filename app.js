@@ -50,6 +50,7 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/robots.txt', routes.robots);
 app.get('/portfolio', routes.portfolio);
+app.get('/technologies', routes.tech);
 app.get('/prices', routes.prices);
 
 app.start = function(){

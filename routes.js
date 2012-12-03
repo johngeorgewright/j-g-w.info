@@ -17,6 +17,13 @@ exports.portfolio = function(req, res){
 };
 
 /**
+ * GET technologies
+ */
+exports.tech = function(req, res){
+  res.render('tech');
+};
+
+/**
  * GET prices
  */
 exports.prices = function(req, res){

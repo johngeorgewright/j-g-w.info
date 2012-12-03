@@ -8,7 +8,7 @@
   "dependencies": {
     "express": "3.0.0rc5",
     "jade": "0.27.7",
-    "less-middleware": "git+https://github.com/johngeorgewright/less.js-middleware.git#configurable-paths",
+    "less-middleware": "0.1.9",
     "bootstrap": "git+https://github.com/twitter/bootstrap.git#v2.2.1",
     "less": "1.3.1",
     "yuicompressor": "2.4.7",
