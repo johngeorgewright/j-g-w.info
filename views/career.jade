@@ -1,0 +1,30 @@
+extends layout
+
+prepend title
+  | Professional Background |&nbsp;
+
+block content
+  article
+    header
+      h1 Professional Background
+
+    aside
+      a(href='/docs/CV.pdf') Download my full CV
+
+    .row-fluid
+      .span6
+        section
+          h1 Currently
+          ul.unstyled
+            li 
+              | Senior Frontend Development of&nbsp;
+              a(href='http://www.amaysim.com.au') Amaysim
+      
+      .span6
+        section
+          h1 Previously
+          ul.unstyled
+            li
+              | Senior Frontend Developer at&nbsp;
+              a(href='http://www.ipcmedia.com') IPC Media
+
