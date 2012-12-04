@@ -51,6 +51,7 @@ app.get('/', routes.index);
 app.get('/robots.txt', routes.robots);
 app.get('/portfolio', routes.portfolio);
 app.get('/prices', routes.prices);
+app.get('/professional-background', routes.career);
 
 app.start = function(){
   http.createServer(app).listen(app.get('port'), function(){

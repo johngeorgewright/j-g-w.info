@@ -24,6 +24,13 @@ exports.prices = function(req, res){
 };
 
 /**
+ * GET career
+ */
+exports.career = function(req, res){
+  res.render('career');
+};
+
+/**
  * GET robots.txt
  */
 exports.robots = function(req, res){
