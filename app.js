@@ -6,6 +6,7 @@ var express  = require('express')
   , locals   = require('./locals')
   , less     = require('less-middleware')
   , helpers  = require('./helpers')
+  , os       = require('os')
   , username = process.env.AUTH_USER
   , password = process.env.AUTH_PASS;
   
@@ -44,7 +45,15 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
+  var tmpDir = os.tmpDir();
+  app.use(less({
+    src    : app.get('less source'),
+    path   : app.get('less include paths'),
+    dest   : tmpDir,
+    prefix : app.get('less prefix')
+  }));
   app.use(express['static'](path.join(__dirname, 'public')));
+  app.use(express['static'](tmpDir));
 });
 
 app.get('/', routes.index);
