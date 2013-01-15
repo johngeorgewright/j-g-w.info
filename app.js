@@ -46,10 +46,11 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   var tmpDir = os.tmpDir();
+  app.set('less destination', tmpDir);
   app.use(less({
     src    : app.get('less source'),
-    path   : app.get('less include paths'),
-    dest   : tmpDir,
+    paths  : app.get('less include paths'),
+    dest   : app.get('less destination'),
     prefix : app.get('less prefix')
   }));
   app.use(express['static'](path.join(__dirname, 'public')));
