@@ -26,6 +26,6 @@ $ cd j-g-w.info
 $ npm i
 
 # Run the server
-$ jake server
+$ npm start
 ```
 
