@@ -1,6 +1,8 @@
 My Personal Site
 ================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/johngeorgewright/j-g-w.info.svg)](https://greenkeeper.io/)
+
 (j-g-w.info)[http://jgw.herokuapps.com]
 
 I'm currently in the process of moving all my work from Dreamhost onto cloud based services. This means some of the hosting will be free and I can also start moving away from PHP and using more exciting tehnologies. Here's a rework of my site using Express.js.
